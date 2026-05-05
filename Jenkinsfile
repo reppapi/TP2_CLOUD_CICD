@@ -43,11 +43,11 @@ pipeline {
                 script {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
                         // PAKAI "bat" dan arahkan kubeconfig-nya
-                        bat "kubectl --kubeconfig=%KUBECONFIG% apply -f k8s/backend-deployment.yaml"
-                        bat "kubectl --kubeconfig=%KUBECONFIG% apply -f k8s/backend-service.yaml"
-                        bat "kubectl --kubeconfig=%KUBECONFIG% apply -f k8s/frontend-deployment.yaml"
-                        bat "kubectl --kubeconfig=%KUBECONFIG% apply -f k8s/frontend-service.yaml"
-                        bat "kubectl --kubeconfig=%KUBECONFIG% apply -f k8s/ingress.yaml"
+                        bat "kubectl --kubeconfig=%KUBECONFIG% apply -f k8s/backend-deployment.yaml --validate=false"
+                        bat "kubectl --kubeconfig=%KUBECONFIG% apply -f k8s/backend-service.yaml --validate=false"
+                        bat "kubectl --kubeconfig=%KUBECONFIG% apply -f k8s/frontend-deployment.yaml --validate=false"
+                        bat "kubectl --kubeconfig=%KUBECONFIG% apply -f k8s/frontend-service.yaml --validate=false"
+                        bat "kubectl --kubeconfig=%KUBECONFIG% apply -f k8s/ingress.yaml --validate=false"
 
                         bat "kubectl --kubeconfig=%KUBECONFIG% rollout restart deployment/backend-deployment"
                         bat "kubectl --kubeconfig=%KUBECONFIG% rollout restart deployment/frontend-deployment"

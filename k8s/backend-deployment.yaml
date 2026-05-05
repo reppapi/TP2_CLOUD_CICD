@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: rreggejiqnois/backend:latest
+          ports:
+            - containerPort: 5000
+          # IDENTITY INJECTION melalui Environment Variable
+          env:
+            - name: NAMA_PRAKTIKAN
+              value: "Repa Pitriani"
+            - name: NIM_PRAKTIKAN
+              value: "2402499"

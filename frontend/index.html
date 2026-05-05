@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Aksesoris - Repa Pitriani</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            color: #e0e0e0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 36px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f093fb, #f5576c, #fda085);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+        .identitas {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+        .identitas-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .identitas-item label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.4);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .identitas-item span {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f5f5f5;
+        }
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 16px;
+        }
+        .item-list {
+            list-style: none;
+        }
+        .item-list li {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: background 0.2s ease, transform 0.2s ease;
+            animation: fadeIn 0.4s ease forwards;
+        }
+        .item-list li:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(6px);
+        }
+        .item-list li::before {
+            content: "✦";
+            color: #f093fb;
+            font-size: 0.9rem;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .add-section {
+            display: flex;
+            gap: 12px;
+        }
+        .add-section input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-size: 0.95rem;
+            color: #f5f5f5;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .add-section input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        .add-section input:focus {
+            border-color: #f093fb;
+        }
+        .add-section button {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            border: none;
+            border-radius: 12px;
+            padding: 14px 28px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .add-section button:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 24px rgba(245, 87, 108, 0.4);
+        }
+        .add-section button:active {
+            transform: scale(0.97);
+        }
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .loading .spinner {
+            width: 36px;
+            height: 36px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: #f093fb;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Card -->
+        <div class="card">
+            <div class="badge">☁️ Cloud Praktikum 2</div>
+            <h1 id="katalog-judul">Memuat...</h1>
+            <p class="subtitle">CI/CD & Container Orchestration</p>
+            <div class="identitas">
+                <div class="identitas-item">
+                    <label>Pemilik</label>
+                    <span id="katalog-pemilik">-</span>
+                </div>
+                <div class="identitas-item">
+                    <label>NIM</label>
+                    <span id="katalog-nim">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item List Card -->
+        <div class="card">
+            <h3>🎀 Daftar Aksesoris</h3>
+            <ul class="item-list" id="item-list">
+                <li class="loading">
+                    <div class="spinner"></div>
+                    Memuat data...
+                </li>
+            </ul>
+        </div>
+
+        <!-- Add Item Card -->
+        <div class="card">
+            <h3>➕ Tambah Aksesoris Baru</h3>
+            <div class="add-section">
+                <input type="text" id="item-input" placeholder="Nama aksesoris (misal: Jam Tangan)">
+                <button onclick="tambahItem()">Tambah</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // RELATIVE PATH - tidak ada IP/port/domain
+        const API_URL = '/api';
+
+        function loadData() {
+            fetch(`${API_URL}/info`)
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('katalog-judul').innerText = data.judul_katalog;
+                    document.getElementById('katalog-pemilik').innerText = data.pemilik;
+                    document.getElementById('katalog-nim').innerText = data.nim;
+
+                    const list = document.getElementById('item-list');
+                    list.innerHTML = "";
+                    data.items.forEach((item, i) => {
+                        let li = document.createElement('li');
+                        li.innerText = item;
+                        li.style.animationDelay = `${i * 0.08}s`;
+                        list.appendChild(li);
+                    });
+                })
+                .catch(err => {
+                    console.error("Gagal ambil data:", err);
+                    document.getElementById('katalog-judul').innerText = 'Gagal memuat data';
+                });
+        }
+
+        function tambahItem() {
+            const input = document.getElementById('item-input');
+            if (input.value.trim() === "") return;
+
+            fetch(`${API_URL}/add-item`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ item: input.value })
+            })
+            .then(res => res.json())
+            .then(() => {
+                input.value = "";
+                loadData();
+            });
+        }
+
+        // Enter key support
+        document.getElementById('item-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') tambahItem();
+        });
+
+        loadData();
+    </script>
+</body>
+</html>

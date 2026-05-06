@@ -18,11 +18,16 @@ nim_owner = os.environ.get('NIM_PRAKTIKAN', '00000000')
 # BAGIAN INI BEBAS KALIAN MODIFIKASI SESUAI TEMA YANG KALIAN PILIH 
 # ===================================================================== 
 katalog_data = { 
-    "judul_katalog": f"Katalog Milik {nama_owner}", 
+    "judul_katalog": f"Little Things Matter - Katalog Milik {nama_owner}",
     "pemilik": nama_owner, 
     "nim": nim_owner, 
-    "items": ["Bando Kelinci Pink", "Jepit Kuromi Ungu", "Gelang Permata Biru"] 
+    "items": [
+        "Bando:", "Bando Kelinci Pink", "Bando Telinga Kucing Cream",
+        "Jepit:", "Jepit Kuromi Ungu", "Jepit HelloKitty Kecil",
+        "Gelang:", "Gelang Permata Biru", "Gelang Silver Pita"
+    ]
 } 
+
  
 @app.route('/api/info', methods=['GET']) 
 def get_info(): 

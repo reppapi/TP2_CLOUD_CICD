@@ -235,10 +235,21 @@
                     const list = document.getElementById('item-list');
                     list.innerHTML = "";
                     data.items.forEach((item, i) => {
-                        let li = document.createElement('li');
-                        li.innerText = item;
-                        li.style.animationDelay = `${i * 0.08}s`;
-                        list.appendChild(li);
+                        if (item.endsWith(':')) {
+                            let header = document.createElement('h3');
+                            header.innerText = item;
+                            header.style.marginTop = '20px';
+                            header.style.marginBottom = '10px';
+                            header.style.color = '#f093fb';
+                            header.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+                            header.style.paddingBottom = '5px';
+                            list.appendChild(header);
+                        } else {
+                            let li = document.createElement('li');
+                            li.innerText = item;
+                            li.style.animationDelay = `${i * 0.08}s`;
+                            list.appendChild(li);
+                        }
                     });
                 })
                 .catch(err => {
